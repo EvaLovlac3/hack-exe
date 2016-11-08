@@ -1,8 +1,17 @@
 #!/usr/bin/python
+from __future__ import print_function
 import random
 import socket
 import sys
 import time
+import os
+import platform
+
+if os.name == 'nt' and platform.release() == '10' and platform.version() >= '10.0.14393':
+    # Fix ANSI color in Windows 10 version 10.0.14393 (Windows Anniversary Update)
+    import ctypes
+    kernel32 = ctypes.windll.kernel32
+    kernel32.SetConsoleMode(kernel32.GetStdHandle(-11), 7)
 
 clear = '\033[0m'
 red = '\033[31m'
@@ -41,7 +50,7 @@ def get_ip(url):
     return ip
 
 def dot(i):
-    for i in xrange(i):
+    for i in range(i):
       sys.stdout.write('.')
       sys.stdout.flush()
       time.sleep(0.04)
@@ -49,33 +58,33 @@ def dot(i):
     time.sleep(0.6)
 
 def main(url):
-    print such_demon
+    print(such_demon)
 
-    print "Enumerating Target",
+    print("Enumerating Target", end=' ')
     dot(40)
-    print " [+] Host: {0}\n [+] IPv4: {1}".format(url, get_ip(url)) #fixme
-    print "Opening SOCK5 ports on infected hosts",
+    print(" [+] Host: {0}\n [+] IPv4: {1}".format(url, get_ip(url))) #fixme
+    print("Opening SOCK5 ports on infected hosts", end=' ')
     dot(21)
-    print " [+] SSL entry point on 127.0.0.1:1337"
-    print "Chaining proxies",
+    print(" [+] SSL entry point on 127.0.0.1:1337")
+    print("Chaining proxies", end=' ')
     dot(42)
-    print ' [+] 7/7 proxies chained {BEL>AUS>JAP>CHI>NOR>FIN>UKR}'
-    print "Launching port knocking sequence",
+    print(' [+] 7/7 proxies chained {BEL>AUS>JAP>CHI>NOR>FIN>UKR}')
+    print("Launching port knocking sequence", end=' ')
     dot(26)
-    print " [+] Knock on TCP<143,993,587,456,25,587,993,80>"
-    print "Sending PCAP datagrams for fragmentation overlap",
+    print(" [+] Knock on TCP<143,993,587,456,25,587,993,80>")
+    print("Sending PCAP datagrams for fragmentation overlap", end=' ')
     dot(10)
-    print " [+] Stack override ***** w00t w00t g0t r00t!"
+    print(" [+] Stack override ***** w00t w00t g0t r00t!")
 
     sys.stdout.write('\n[')
-    for i in xrange(65):
+    for i in range(65):
       sys.stdout.write('=')
       sys.stdout.flush()
       time.sleep(0.01)
     sys.stdout.write(']\n')
     time.sleep(0.5)
 
-    print "root@{0}:~# ".format(url),
+    print("root@{0}:~# ".format(url), end=' ')
     sys.stdout.flush()
     time.sleep(5)
 
